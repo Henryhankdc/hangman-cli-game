@@ -1,0 +1,19 @@
+{
+  "name": "hangman-cli-game",
+  "version": "1.0.0",
+  "description": "package for hangman-cli-game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Henryhankdc/hangman-cli-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Henryhankdc/hangman-cli-game/issues"
+  },
+  "homepage": "https://github.com/Henryhankdc/hangman-cli-game#readme"
+}
