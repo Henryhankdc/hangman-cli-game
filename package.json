@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Henryhankdc/hangman-cli-game/issues"
   },
-  "homepage": "https://github.com/Henryhankdc/hangman-cli-game#readme"
+  "homepage": "https://github.com/Henryhankdc/hangman-cli-game#readme",
+  "dependencies": {
+    "inquirer": "^5.1.0"
+  }
 }
