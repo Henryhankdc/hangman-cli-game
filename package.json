@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Henryhankdc/hangman-cli-game#readme",
   "dependencies": {
+    "clear": "0.0.1",
     "inquirer": "^5.1.0"
   }
 }
