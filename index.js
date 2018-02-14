@@ -1,17 +1,9 @@
-// Var sand requires
+// Var and requires
 
 var inquirer = require('inquirer');
 var Word  = require('./Word.js');
 var clear = require('clear');
 // Global vars
-// var wins = 0;
-// var losses = 0;
-// var turns;
-// var randomWord = [];
-// var guesses;
-// var checked = [];
-// var chooseWord;
-// var letter;
 
 var chosenWords;
 var chosenWord;
@@ -65,7 +57,7 @@ var pickCategory = function() {
         choices: ['Marvel Cinematic Universe', 'Star Wars']
         }
     ]).then(function(response){
-        switch(response.catgeory){
+        switch(response.category){
         case 'Marvel Cinematic Universe':
             chosenCategory = 'Marvel Cinematic Universe';
             chooseWord(marvelHeroes);
@@ -88,8 +80,8 @@ var chooseWord = function(category) {
     lettersGuessed = [];
 
     chosenWords = category.slice();
-    var selectRandomWord = Math.floor(Math.random() * currentWords.length);
-    chosenWord = currentWords[selectRandomWord];
+    var selectRandomWord = Math.floor(Math.random() * chosenWords.length);
+    chosenWord = chosenWords[selectRandomWord];
     // use object variable with constructor
     chosenWordObj = new Word(chosenWord);
     chosenWords.splice(selectRandomWord, 1);
@@ -134,12 +126,13 @@ var userGuess = function(){
         ]).then(function(response){
             // use regex to ensure string length for reference
             // https://www.sitepoint.com/using-regular-expressions-to-check-string-length/
-            var regexCheck = /^[a-zA-Z]{1}$;
-            if (response.guess.length === 1 && regext.test(response.guess)) {
+            var regexCheck = /^[a-z]+$/i;
+            
+            if (response.guess.length === 1 && regexCheck.test(response.guess)) {
 
                 var currentGuess = response.guess.toLowerCase();
                 chosenWordObj.guessLetter(currentGuess);
-                letterCheck(currentGuess);
+                countLettersLeft(currentGuess);
                 userGuess()
 
             }else {
@@ -171,9 +164,18 @@ var ruleReminder = function() {
 }
 
 
-// Countr letter left in word
+// Count letter left in word
 var countLettersLeft = function() {
+    
+  if (chosenWord.indexOf(chosenWordObj) === -1) {
 
+    if (lettersGuessed.indexOf(chosenWordObj) === -1) {
+      
+      guessesRemaining--;
+// push letter to letters guess array if there
+      lettersGuessed.push(lettersGuessed);
+    }
+  }
 
 }
 
@@ -182,12 +184,71 @@ var checkRemainingLetters = function() {
         lettersRemaining = 0;
 
         for (let i = 0; i < chosenWordObj.letters.length; i++) {
-           if (chosenWordObj.letters[i].guess === false) {
+           if (chosenWordObj.letters[i].guessed === false) {
                lettersRemaining++;
            }
             
         }
 }
+
+
+var nextRound = function () {
+    // Tell user they guessed correctly
+  console.log("You win!\n");
+  // Present user with options
+  inquirer.prompt([
+    {
+      type: "list",
+      name: "choice",
+      message: "Time to make a choice.",
+      choices: ["Keep playing?",  "Quit game?"]
+    }
+  ]).then(function(response) {
+    // Switch logic
+    switch (response.choice) {
+      case "Keep playing?":
+        chooseWord(chosenWord);
+        break;
+      case "Quit game?":
+        // Call quitGame
+        stopGame();
+        break;
+    }
+  });
+}
+
+var gameOver = function() {
+    console.log("No more guesses. Its all over.");
+    console.log(`The correct answer was ${chosenWord}.\n`);
+    // Play again prompt
+    inquirer.prompt([
+      {
+        type: "list",
+        name: "choice",
+        message: "Please choose an action",
+        choices: ["Play again", "Quit game"]
+      }
+    ]).then(function(response) {
+      if (response.choice === "Play again") {
+        // Clear console
+        clear();
+        // start over at choose category
+        pickCategory();
+      } else {
+        //quit
+        stopGame();
+      }
+    });
+  }
+
+  // quitGame function
+var stopGame = function() {
+    // Clear everything
+    clear();
+    console.log("See Ya later");
+  }
+  
+
 
 
 
