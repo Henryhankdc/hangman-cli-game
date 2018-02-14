@@ -9,7 +9,7 @@ var Word = function(word) {
   for (i = 0; i < word.length; i++) {
 
     var newLetter = new Letter(word[i]);
-    this.letterArr.push(newLetter);
+    this.letters.push(newLetter);
 
   }
 
@@ -32,9 +32,9 @@ var Word = function(word) {
 
 this.guessLetter = function(guessedLetter) {
     // for each Letter object in array
-    for (i = 0; i < this.letterArr.length; i++) {
+    for (i = 0; i < this.letters.length; i++) {
       // pass guessedLetter to Letter.checkLetter
-      this.letterArr[i].letterCheck(guessedLetter);
+      this.letters[i].letterCheck(guessedLetter);
     }
   };
 

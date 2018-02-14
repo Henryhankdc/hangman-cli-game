@@ -99,6 +99,25 @@ var chooseWord = function(category) {
 
 }
 
+var userGuess = function(){
+    // clear stuff from console.
+    clear();
+// Check remaining letters
+    checkRemainingLetters();
+
+}
+
+// function to check remaning letters
+var checkRemainingLetters = function() {
+        lettersRemaining = 0;
+
+        for (let i = 0; i < chosenWordObj.letters.length; i++) {
+           if (chosenWordObj.letters[i].guess === false) {
+               lettersRemaining++;
+           }
+            
+        }
+}
 
 
 
