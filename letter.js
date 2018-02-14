@@ -1,6 +1,6 @@
 // Constructor for guessed letters.
 
-var Letter  = function(letter, guessed) {
+var Letter  = function(letter, guess) {
     this.letter= letter;
     this.guess = false;
 
@@ -25,3 +25,5 @@ this.letterCheck = function(guessedLetter){
 };
 
 };
+
+module.exports = Letter;
