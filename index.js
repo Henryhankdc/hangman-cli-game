@@ -105,6 +105,76 @@ var userGuess = function(){
 // Check remaining letters
     checkRemainingLetters();
 
+    // logic to check the letters
+
+    if(lettersRemaining === 0) {
+        if(wordsRemaining === 0) {
+            stopGame();
+        }else {
+            // start next round
+            nextRound();
+        } 
+    }else if(guessesRemaining === 0) {
+        // finish game
+        gameOver();
+    }else {
+        console.log(`Category: ${chosenCategory}`);
+        console.log(`Words Left in Category: ${wordsRemaining}`);
+        console.log(`Letters Guessed: ${lettersGuessed.join('')}`);
+        console.log(`Guesses Remaining: ${guessesRemaining}`);
+
+        chosenWordObj.lettersToString();
+
+        inquirer.prompt([
+            {
+            type:'input',
+            message: 'type a letter to guess ',
+            name: 'guess'
+            }
+        ]).then(function(response){
+            // use regex to ensure string length for reference
+            // https://www.sitepoint.com/using-regular-expressions-to-check-string-length/
+            var regexCheck = /^[a-zA-Z]{1}$;
+            if (response.guess.length === 1 && regext.test(response.guess)) {
+
+                var currentGuess = response.guess.toLowerCase();
+                chosenWordObj.guessLetter(currentGuess);
+                letterCheck(currentGuess);
+                userGuess()
+
+            }else {
+                // tell user to enter only one word
+                ruleReminder();
+            }
+
+        });
+        
+    }
+
+};
+
+var ruleReminder = function() {
+    inquirer.prompt([
+        {
+          type: "confirm",
+          message: "Only enter ONE letter. got it? Confirm to proceeed.",
+          name: "confirm"
+        }
+      ]).then(function(response) {
+        if (response.confirm === true) {
+          // Call userGuess()
+          userGuess();
+        } else {
+          ruleReminder();
+        }
+      });
+}
+
+
+// Countr letter left in word
+var countLettersLeft = function() {
+
+
 }
 
 // function to check remaning letters

@@ -17,9 +17,9 @@ var Word = function(word) {
 //   get output to array to push to
     this.outputToArray = [];
     
-    for (i = 0; i < this.letterArr.length; i++) {
+    for (i = 0; i < this.letters.length; i++) {
       // Call Letter.output method which returns an underscore or letter
-      var outputLetterToArray = this.letterArr[i].output();
+      var outputLetterToArray = this.letters[i].output();
    
       this.outputToArray.push(outputtedLetter);
     }
