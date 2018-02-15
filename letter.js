@@ -1,4 +1,5 @@
 // Constructor for guessed letters.
+// Mad props to my boy aaron wyand for helping me out with this step and connecting the dots. 
 
 var Letter  = function(letter, guessed) {
     this.letter= letter;

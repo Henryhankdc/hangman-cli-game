@@ -1,5 +1,4 @@
 // Var and requires
-
 var inquirer = require('inquirer');
 var Word  = require('./Word.js');
 var clear = require('clear');
@@ -19,13 +18,6 @@ var wordsRemaining;
 var marvelHeroes = ['thor', 'blackpanther', 'ironman', 'vision', 'antman', 'hawkeye', 'hulk' ];
 var starWars = ['luke', 'kyloren', 'deathstar', 'starkiller','droid', 'chewbacca' ];
 
-
-
-
-
-
-
-
 // Functions
 
 var gameWelcome = function(){
@@ -36,7 +28,7 @@ HH   HH   AAA   NN   NN   GGGG  MM    MM   AAA   NN   NN
 HH   HH  AAAAA  NNN  NN  GG  GG MMM  MMM  AAAAA  NNN  NN 
 HHHHHHH AA   AA NN N NN GG      MM MM MM AA   AA NN N NN 
 HH   HH AAAAAAA NN  NNN GG   GG MM    MM AAAAAAA NN  NNN 
-HH   HH AA   AA NN   NN  GGGGGG MM    MM AA   AA NN   NN /n/n`);
+HH   HH AA   AA NN   NN  GGGGGG MM    MM AA   AA NN   NN `);
 
 
 pickCategory();
@@ -248,10 +240,6 @@ var stopGame = function() {
     console.log("See Ya later");
   }
   
-
-
-
-
 // call welecome function
 gameWelcome();
 
